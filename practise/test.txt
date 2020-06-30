@@ -1,0 +1,6 @@
+your account is: %s
+ your pasw is: %syour account is: %s 
+your pasw is: %syour account is: %s 
+your pasw is: %s 
+your account is: %s 
+your pasw is: %s 

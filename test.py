@@ -4,5 +4,10 @@
 # @FileName: test.py
 # @Software: PyCharm
 
+x = 10
+print(x)
+print(id(x))
 
-print('ddd')
+l = ['a', x]
+print(l[1])
+print(id(l[1]))
