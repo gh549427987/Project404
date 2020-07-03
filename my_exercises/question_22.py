@@ -29,3 +29,30 @@
 # In case of input data being supplied to the question, it should be assumed to be a console input.
 #
 ################################################################
+
+def me():
+    s = sorted('New to Python or choosing between Python 2 and Python 3? Read Python 2 or Python 3.'.split())
+    k = sorted(set(s))
+    print(sorted(k))
+    dic = {}
+    for i in k:
+        dic[i] = 1
+
+    for i in range(0, len(s)-1):
+        if s[i] == s[i+1]:
+            dic['%s'%s[i]] += 1
+
+    for i in k:
+        print("{} : {}".format(i, dic[i]))
+
+def you():
+    freq = {}
+    s = sorted('New to Python or choosing between Python 2 and Python 3? Read Python 2 or Python 3.'.split())
+    for word in s:
+        freq['%s'%word] = freq.get(word, 0 )+1
+    words = freq.keys()
+    sorted(words)
+    for i in words:
+        print('%s : %d'%(i,freq['%s'%i]))
+
+you()

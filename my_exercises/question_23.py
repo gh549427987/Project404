@@ -15,3 +15,12 @@
 #     Using the ** operator
 #
 ################################################################
+
+def square_value(num):
+    return num**2
+
+while True:
+    s = float(input("p>>"))
+    if s == 'exit':
+        break
+    print(square_value(s))

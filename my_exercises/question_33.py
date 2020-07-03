@@ -14,3 +14,10 @@
 # Use ** operator to get power of a number.
 #
 ################################################################
+
+def me():
+    d = {}
+    for i in range(1,4):
+        d['%d'%i] = i**2
+    print(d)
+me()

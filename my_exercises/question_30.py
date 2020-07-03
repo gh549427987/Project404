@@ -13,3 +13,8 @@
 # Use + to concatenate the strings
 #
 ################################################################
+
+def me(a='1234', b='5678'):
+    return a+b
+
+print(me())

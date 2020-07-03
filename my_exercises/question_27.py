@@ -13,3 +13,7 @@
 # Use str() to convert a number to string.
 #
 ################################################################
+def me(num):
+    return str(num)
+
+print(me(100))

@@ -16,3 +16,6 @@
 # Use keys() to iterate keys in the dictionary. Also we can use item() to get key/value pairs.
 #
 ################################################################
+
+for i in range(10, 0,-1):
+    print(i)

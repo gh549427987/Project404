@@ -17,3 +17,16 @@
 #     The built-in document method is __doc__
 #
 ################################################################
+
+print(abs.__doc__)
+print('+++++++++++++')
+print(int.__doc__)
+
+def me():
+    '''
+    cknima
+    :return:
+    '''
+    pass
+
+print(me.__doc__)

@@ -16,3 +16,14 @@
 # Use keys() to iterate keys in the dictionary. Also we can use item() to get key/value pairs.
 #
 ################################################################
+def me():
+    d = {}
+    for i in range(1,21):
+        d['%d'%i] = i**2
+    for i in range(1,21):
+        d['%d'%i] = i**2
+    for (k,v) in d.items():
+        print(v)
+    return d
+
+me()
