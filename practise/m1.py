@@ -7,3 +7,7 @@ print('正在导入m1')
 from practise.m2 import y
 
 x='m1'
+a = True
+b = False
+# x = a if a else b
+print(x)
