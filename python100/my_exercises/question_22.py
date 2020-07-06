@@ -29,3 +29,8 @@
 # In case of input data being supplied to the question, it should be assumed to be a console input.
 #
 ################################################################
+
+words = sorted('New to Python or choosing between Python 2 and Python 3? Read Python 2 or Python 3.'.split())
+print(words)
+s = set()
+s.add(element for element in words)
