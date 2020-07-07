@@ -16,3 +16,11 @@
 # Use tuple() to get a tuple from a list.
 #
 ################################################################
+def me():
+    list = []
+    for i in range(1, 21):
+        list.append(i**2)
+    t = tuple(list)
+    return t
+print(me())
+print(type(me()))

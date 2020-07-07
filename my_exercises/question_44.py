@@ -13,3 +13,12 @@
 # Use if statement to judge condition.
 #
 ################################################################
+
+while True:
+    p = input("p>>").strip()
+    if p in ["Yes", 'yes', 'YES']:
+        print("Yes")
+    elif p == "q":
+        break
+    else:
+        print("No")

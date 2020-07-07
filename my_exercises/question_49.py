@@ -14,3 +14,8 @@
 # Use lambda to define anonymous functions.
 #
 ################################################################
+def me():
+    l = map(lambda x:x**2, range(1,21))
+    return list(l)
+
+print(me())
