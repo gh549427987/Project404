@@ -35,3 +35,11 @@ with open('test_5.json', 'w') as f:
 # print(json.dumps(j,indent=2))
 # print(json.dumps(js,indent=2))
 
+d = {}
+for i in range(5):
+    d[i] = i
+for i in ['dd', 'dsd']:
+    d[i] = i
+d = (0,3)
+print(d[1])
+

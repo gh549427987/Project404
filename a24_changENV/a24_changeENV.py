@@ -25,14 +25,27 @@ class regOperator():
 
     def setReg(self):
         with open('test.json', 'r') as f :
-            print(json.load(f))
+            print(json.load(f)
+
         pass
 
     def saveReg(self):
+        """
+        {  _all
+            "game_":{   _lp
+                "VR00001":{   _l
+                    "properties":'pppp'
+                    "properties":'pppp'
+                    "properties":'pppp'
+                    ...
+                }
+            }
+        }
+        :return:
+        """
         pathGameKey = winreg.OpenKey(winreg.HKEY_CURRENT_USER, self.pathGameReg)
         pathPlatformKey = winreg.OpenKey(winreg.HKEY_CURRENT_USER, self.pathPlatformReg)
         pathPluginsKey = winreg.OpenKey(winreg.HKEY_CURRENT_USER, self.pathPluginsReg)
-
 
         games_dicreg = {}
         platform_dicreg = {}
@@ -57,28 +70,31 @@ class regOperator():
                 print("saveReg: gamelist is Finished")
                 break
 
+        # ==================================================
+
         # save the reg into json file
         # _lp save game by game reg data
-        _lp = []
+        _all = {}
+        _lp = {}
         for path,gameid in gameRegList,gameID:
+            _lp[gameid] = {}  # 创建当前游戏id 的字典
             gamekey = winreg.OpenKey(winreg.HKEY_CURRENT_USER, path)
             # _l save key and value one by one
-            _l = []
+            _l = {}
             for i in range(len(gameRegList)):
                 name, value, type = winreg.EnumValue(gamekey, i)
                 # create key：value str
-                json_gamedata = '\"%s\":\"%s\"'%(name,value)
-                _l.append(json_gamedata)
+                _l[name]=value     #  创建当前游戏内，所有属性噶字典
             # create game's name with key:value str
             # "game":{key:value}
-            json_game = '\"%s\":{'%gameid +','.join(_l)+ '}'
-            _lp.append(json_game)
+            _lp[gameid] = _l # 赋值到当前游戏id到字典内
         # create all games reg str
-        json_games = '{'+','.join(_lp)+'}'
 
+        _all['Game'] = _lp
         # save all the str into a file with json
         with open('test.json', 'w') as f:
-            json.dump(json_games, f)
+            json.dump(_all, f, ensure_ascii=False, indent=2)
+
 
 # load settings
 def settings(Env):
