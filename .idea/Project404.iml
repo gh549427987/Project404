@@ -6,7 +6,7 @@
       <excludeFolder url="file://$MODULE_DIR$/env" />
       <excludeFolder url="file://$MODULE_DIR$/venv" />
     </content>
-    <orderEntry type="jdk" jdkName="Python 3.7 virtualenv at ~/PycharmProjects/Project404/CourseSystem/env_CourseSystem" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="Python 3.7 (Project404)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
 </module>

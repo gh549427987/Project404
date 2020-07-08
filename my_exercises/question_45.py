@@ -14,3 +14,9 @@
 # Use lambda to define anonymous functions.
 #
 ################################################################
+
+list = [1,2,3,4,5,6,7,8,9,10]
+s = filter(lambda x:x%2==0 , list)
+while True:
+    p = input("p>>")
+    print(next(s))

@@ -14,3 +14,8 @@
 # Use lambda to define anonymous functions.
 #
 ################################################################
+def me():
+    l = list(filter(lambda x:x%2==0, range(1,21)))
+    return l
+
+print(me())

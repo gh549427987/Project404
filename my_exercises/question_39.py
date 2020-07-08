@@ -16,3 +16,12 @@
 # Use [n1:n2] to slice a list
 #
 ################################################################
+
+def me():
+    list = []
+    for i in range(1, 21):
+        list.append(i**2)
+    print(list[-5:])
+    return list
+
+print(me())
