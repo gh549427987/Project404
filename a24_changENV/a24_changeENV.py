@@ -33,22 +33,25 @@ class regOperator():
         pathPlatformKey = winreg.OpenKey(winreg.HKEY_CURRENT_USER, self.pathPlatformReg)
         pathPluginsKey = winreg.OpenKey(winreg.HKEY_CURRENT_USER, self.pathPluginsReg)
 
-        # gain gamelist reg
-        gameRegList = []
+
         games_dicreg = {}
         platform_dicreg = {}
         plugins_dicreg = {}
         all_list = []
-        gamecount = 0
         save_json = ''
 
 
+        # gain gamelist reg
+        gameRegList = []
+        gamecount = 0
+        gameID = []
         # iterate game list register,gain all the reg file name
         while True:
             try:
                 gameNum = winreg.EnumKey(pathGameKey, gamecount)
                 gamespath = self.pathGameReg + '\\' + gameNum
                 gamecount+=1
+                gameID.append(gameNum) # gain ID list of every game
                 gameRegList.append(gamespath)
             except:
                 print("saveReg: gamelist is Finished")
@@ -57,7 +60,7 @@ class regOperator():
         # save the reg into json file
         # _lp save game by game reg data
         _lp = []
-        for path in gameRegList:
+        for path,gameid in gameRegList,gameID:
             gamekey = winreg.OpenKey(winreg.HKEY_CURRENT_USER, path)
             # _l save key and value one by one
             _l = []
@@ -68,10 +71,11 @@ class regOperator():
                 _l.append(json_gamedata)
             # create game's name with key:value str
             # "game":{key:value}
-            json_game = '\"%s\":{'%path +','.join(_l)+ '}'
+            json_game = '\"%s\":{'%gameid +','.join(_l)+ '}'
             _lp.append(json_game)
         # create all games reg str
         json_games = '{'+','.join(_lp)+'}'
+
         # save all the str into a file with json
         with open('test.json', 'w') as f:
             json.dump(json_games, f)
