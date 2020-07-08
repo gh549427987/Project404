@@ -1,0 +1,12 @@
+{
+  "onlineEnvReg": {
+    "pathGameReg": "Software\\NetVios\\NetViosVR\\Games",
+    "pathPlatformReg" : "Software\\NetVios\\NetViosVR\\platform",
+    "pathPluginsReg": "Software\\NetVios\\NetViosVR\\Plugins\\P000001"
+  },
+  "testEnvReg": {
+    "pathGameReg": "Software\\NetVios\\NetViosVR\\Games",
+    "pathPlatformReg" : "Software\\NetVios\\NetViosVR\\platform",
+    "pathPluginsReg": "Software\\NetVios\\NetViosVR\\Plugins\\P000001"
+  }
+}
