@@ -2,14 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="24bebd69-f3a1-474c-a1ab-764b9e46c716" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/a24_changeENV.py" beforeDir="false" afterPath="$PROJECT_DIR$/a24_changeENV.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.json" beforeDir="false" afterPath="$PROJECT_DIR$/test.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_2.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_3.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_4.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_5.json" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -18,18 +12,33 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/a24_changENV$a24_changeENV.coverage" NAME="a24_changeENV Coverage Results" MODIFIED="1594361331044" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/a24_changENV$settings.coverage" NAME="settings Coverage Results" MODIFIED="1594639849429" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/conf" />
+    <SUITE FILE_PATH="coverage/a24_changENV$a24_changeENV.coverage" NAME="a24_changeENV Coverage Results" MODIFIED="1594645614316" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/a24_changeENV.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="491">
-              <caret line="41" column="59" selection-start-line="41" selection-start-column="59" selection-end-line="41" selection-end-column="59" />
+            <state relative-caret-position="304">
+              <caret line="45" column="22" selection-start-line="45" selection-start-column="22" selection-end-line="45" selection-end-column="22" />
               <folding>
                 <element signature="e#115#128#0" expanded="true" />
+                <element signature="e#2094#2218#0" />
+                <element signature="e#2257#2384#0" />
+                <element signature="e#1778#5050#0" />
+                <element signature="e#2101#2153#0" />
+                <element signature="e#5490#6184#0" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/conf/conf.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="234">
+              <caret line="9" column="8" selection-start-line="9" selection-end-line="9" selection-end-column="8" />
             </state>
           </provider>
         </entry>
@@ -37,8 +46,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$USER_HOME$/.PyCharm2018.3/system/python_stubs/-2071890039/winreg.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="294">
-              <caret line="395" column="12" lean-forward="true" selection-start-line="395" selection-start-column="12" selection-end-line="395" selection-end-column="12" />
+            <state relative-caret-position="111">
+              <caret line="532" column="4" selection-start-line="532" selection-start-column="4" selection-end-line="532" selection-end-column="4" />
               <folding>
                 <element signature="n#!!doc" />
                 <element signature="e#73#1784#1" />
@@ -49,23 +58,16 @@
                 <element signature="e#3546#3936#1" />
                 <element signature="e#4640#5433#0" />
                 <element signature="e#4640#5424#1" />
-                <element signature="e#6098#6953#0" />
-                <element signature="e#6098#6944#1" />
-                <element signature="e#7018#7242#0" />
-                <element signature="e#7018#7233#1" />
                 <element signature="e#7316#7750#0" />
                 <element signature="e#7316#7741#1" />
                 <element signature="e#7823#8153#0" />
                 <element signature="e#7823#8144#1" />
-                <element signature="e#8214#8654#0" />
                 <element signature="e#8717#9454#0" />
                 <element signature="e#9532#9573#0" />
                 <element signature="e#9643#10343#0" />
                 <element signature="e#9643#10334#1" />
                 <element signature="e#10412#11357#0" />
                 <element signature="e#10412#11348#1" />
-                <element signature="e#12033#12585#0" />
-                <element signature="e#12033#12576#1" />
                 <element signature="e#12651#13100#0" />
                 <element signature="e#12651#13091#1" />
                 <element signature="e#13172#13421#0" />
@@ -142,15 +144,24 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/settings.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
-              <caret line="9" column="70" selection-start-line="9" selection-start-column="70" selection-end-line="9" selection-end-column="70" />
+            <state relative-caret-position="52">
+              <caret line="2" column="6" selection-start-line="2" selection-start-column="6" selection-end-line="2" selection-end-column="55" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/online_latest.json">
-          <provider selected="true" editor-type-id="text-editor" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="78">
+              <caret line="152" column="10" selection-start-line="152" selection-start-column="3" selection-end-line="152" selection-end-column="10" />
+              <folding>
+                <element signature="n#!!block;n#Games#0;n#!!top" />
+                <element signature="n#!!block;n#platform#0;n#!!top" />
+                <element signature="n#!!block;n#Plugins#0;n#!!top" />
+              </folding>
+            </state>
+          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -201,6 +212,7 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>\</find>
+      <find>ALL</find>
     </findStrings>
     <replaceStrings>
       <replace>\\</replace>
@@ -214,6 +226,7 @@
       <list>
         <option value="$PROJECT_DIR$/settings.txt" />
         <option value="$PROJECT_DIR$/settings.json" />
+        <option value="$PROJECT_DIR$/conf/settings.py" />
         <option value="$PROJECT_DIR$/a24_changeENV.py" />
       </list>
     </option>
@@ -242,7 +255,7 @@
             <path>
               <item name="a24_changENV" type="b2602c69:ProjectViewProjectNode" />
               <item name="a24_changENV" type="462c0819:PsiDirectoryNode" />
-              <item name="venv" type="462c0819:PsiDirectoryNode" />
+              <item name="conf" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -269,7 +282,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.a24_changeENV">
     <configuration name="a24_changeENV" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="a24_changENV" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -292,9 +305,32 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="settings" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="a24_changENV" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/conf" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="D:\Python-Personal-Project\Project404\a24_changENV\conf\conf.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Python.a24_changeENV" />
+        <item itemvalue="Python.settings" />
       </list>
     </recent_temporary>
   </component>
@@ -313,24 +349,33 @@
       <workItem from="1594215113131" duration="276000" />
       <workItem from="1594263069316" duration="1557000" />
       <workItem from="1594344273406" duration="2421000" />
-      <workItem from="1594351304118" duration="1410000" />
+      <workItem from="1594351304118" duration="2612000" />
+      <workItem from="1594622056541" duration="8157000" />
     </task>
+    <task id="LOCAL-00001" summary="reg update">
+      <created>1594361410785</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1594361410785</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="20974000" />
+    <option name="totallyTimeSpent" value="30333000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.13113007" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.13219616" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.33152762" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.39934355" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39869988" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -373,6 +418,10 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="reg update" />
+    <option name="LAST_COMMIT_MESSAGE" value="reg update" />
+  </component>
   <component name="editorHistoryManager">
     <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37/Lib/json/decoder.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -382,16 +431,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test.josn" />
-    <entry file="file://$PROJECT_DIR$/settings.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="9" column="70" selection-start-line="9" selection-start-column="70" selection-end-line="9" selection-end-column="70" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/online_latest.json">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/test.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="468">
@@ -420,10 +459,29 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/online_latest.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="78">
+          <caret line="152" column="10" selection-start-line="152" selection-start-column="3" selection-end-line="152" selection-end-column="10" />
+          <folding>
+            <element signature="n#!!block;n#Games#0;n#!!top" />
+            <element signature="n#!!block;n#platform#0;n#!!top" />
+            <element signature="n#!!block;n#Plugins#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/settings.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="52">
+          <caret line="2" column="6" selection-start-line="2" selection-start-column="6" selection-end-line="2" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$USER_HOME$/.PyCharm2018.3/system/python_stubs/-2071890039/winreg.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="294">
-          <caret line="395" column="12" lean-forward="true" selection-start-line="395" selection-start-column="12" selection-end-line="395" selection-end-column="12" />
+        <state relative-caret-position="111">
+          <caret line="532" column="4" selection-start-line="532" selection-start-column="4" selection-end-line="532" selection-end-column="4" />
           <folding>
             <element signature="n#!!doc" />
             <element signature="e#73#1784#1" />
@@ -434,23 +492,16 @@
             <element signature="e#3546#3936#1" />
             <element signature="e#4640#5433#0" />
             <element signature="e#4640#5424#1" />
-            <element signature="e#6098#6953#0" />
-            <element signature="e#6098#6944#1" />
-            <element signature="e#7018#7242#0" />
-            <element signature="e#7018#7233#1" />
             <element signature="e#7316#7750#0" />
             <element signature="e#7316#7741#1" />
             <element signature="e#7823#8153#0" />
             <element signature="e#7823#8144#1" />
-            <element signature="e#8214#8654#0" />
             <element signature="e#8717#9454#0" />
             <element signature="e#9532#9573#0" />
             <element signature="e#9643#10343#0" />
             <element signature="e#9643#10334#1" />
             <element signature="e#10412#11357#0" />
             <element signature="e#10412#11348#1" />
-            <element signature="e#12033#12585#0" />
-            <element signature="e#12033#12576#1" />
             <element signature="e#12651#13100#0" />
             <element signature="e#12651#13091#1" />
             <element signature="e#13172#13421#0" />
@@ -523,12 +574,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/conf/conf.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="9" column="8" selection-start-line="9" selection-end-line="9" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/a24_changeENV.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="491">
-          <caret line="41" column="59" selection-start-line="41" selection-start-column="59" selection-end-line="41" selection-end-column="59" />
+        <state relative-caret-position="304">
+          <caret line="45" column="22" selection-start-line="45" selection-start-column="22" selection-end-line="45" selection-end-column="22" />
           <folding>
             <element signature="e#115#128#0" expanded="true" />
+            <element signature="e#2094#2218#0" />
+            <element signature="e#2257#2384#0" />
+            <element signature="e#1778#5050#0" />
+            <element signature="e#2101#2153#0" />
+            <element signature="e#5490#6184#0" />
           </folding>
         </state>
       </provider>

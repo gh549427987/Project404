@@ -8,7 +8,7 @@ import winreg
 import logging
 import json
 import re
-
+from conf import conf
 
 logger = logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(filename)s[line:%(lineno)d] - %('
                                                          'levelname)s: %(message)s')
@@ -29,29 +29,56 @@ class regOperator():
         self.pathPlatformKey = winreg.OpenKey(winreg.HKEY_CURRENT_USER, self.pathPlatformReg)
         self.pathPluginsKey = winreg.OpenKey(winreg.HKEY_CURRENT_USER, self.pathPluginsReg)
 
+    def del_games(self):
+        i = 0
+        _gamelist = []
+        while True:
+            try:
+                d = winreg.EnumKey(self.pathGameKey, i)
+                _gamelist.append(d)
+                i += 1
+            except :
+                print('del_games First step Done!')
+                break
+        print(_gamelist)
+
+        for game in _gamelist:
+            print(game)
+            print(self.pathGameReg+'\\'+game)
+            _delkey = winreg.OpenKey(winreg.HKEY_CURRENT_USER, self.pathGameReg+'\\'+game)
+            winreg.DeleteKey(_delkey, game)
+            i+=1
+        print("游戏注册表删除完成！")
+
     def setReg(self):
-        with open('{}_latest.json'.format(self.envType),'r') as f:
+        print('')
+        with open('{}/{}_latest.json'.format(conf.REG_PATH, self.envType),'r') as f:
             _reg = json.load(f)
-            print(_reg)
-
-        def del_games():
-            # d = winreg.DeleteKey(self.pathGameKey,r'Software\NetVios\NetViosVR\Games\VR000001')
-            _key = winreg.OpenKey(winreg.HKEY_CURRENT_USER,r'Software\NetVios\NetViosVR\Games',
-                                  0, winreg.KEY_ALL_ACCESS)
-            winreg.SetValue(_key,'VR000022',1,'')
-            winreg.CreateKeyEx(_key, 'OPS', 0, winreg.REG_SZ, '1')
-            # winreg.SetValueEx(_key,'OPS',0,winreg.REG_SZ,'1')
-        d = _reg['Games'].keys()
-        for i in d:
-            print(i)
-        del_games()
-
-        # winreg.OpenKey(winreg.HKEY_CURRENT_USER, _reg['Games'][0])
 
 
-        pass
+        def setGames():
+            _setKey = winreg.OpenKey(winreg.HKEY_CURRENT_USER, self.pathGameReg)
 
+            for game in _reg['Games'].keys():
+                # 创建每个游戏的注册表
+                winreg.CreateKey(_setKey, game[-8:])
+                # 填入每个游戏的属性
+                for property in _reg['Games'][game].keys():
+                    _setvalueKey = winreg.OpenKey(winreg.HKEY_CURRENT_USER, game, access=winreg.KEY_SET_VALUE)
+                    winreg.SetValueEx(_setvalueKey,property,0,1,_reg['Games'][game][property])
+        def setPlatform():
+            for property in _reg['platform'].keys():
+                winreg.SetValueEx(self.pathPlatformKey,property,0,1,_reg[property])
+        def setPlugins():
+            for property in _reg['Plugins'].keys():
+                winreg.SetValueEx(self.pathPluginsKey, property, 0, 1, _reg[property])
 
+        try:
+            setGames()
+            setPlatform()
+            setPlugins()
+        except:
+            print('注册表注入完成')
     def saveReg(self):
         """
         {  _all
@@ -67,9 +94,7 @@ class regOperator():
         :return:
         """
         _all = {}
-
         # ==================================================
-
         # save the reg into json file
         # _lp save game by game reg data
         # 闭包函数
@@ -144,12 +169,13 @@ class regOperator():
         _all['platform'] = readPlatform()
         _all['Plugins'] = readPlugins()
         # save all the str into a file with json
-        with open('{}_latest.json'.format(self.envType), 'w') as f:
+        with open('{}/{}_latest.json'.format(conf.REG_PATH,self.envType), 'w') as f:
             json.dump(_all, f, ensure_ascii=False, indent=2)
 
 
+
 # load settings
-def settings(Env):
+def settidngs(Env):
     ''':arg load settings data from settings.json'''
 
     with open('settings.json','r') as f:
@@ -175,11 +201,11 @@ def chooseEnv():
         #                   'others: input whatever you want.\n'
         #                   'choose a selection you want>> '
         #                   '').strip()
-        envChoose='1'
+        envChoose='2'
         if envChoose == '1':
-            return(settings('Online'))
+            return(settidngs('Online'))
         elif envChoose == '2':
-            return(settings('Test'))
+            return(settidngs('Test'))
         elif envChoose == 'quit':
             break
         else:
@@ -194,7 +220,8 @@ def main():
                 pathPlatformReg=envReg["pathPlatformReg"],
                 pathPluginsReg=envReg["pathPluginsReg"])
     # ro.saveReg()
-    ro.setReg()
+    # ro.setReg()
+    ro.del_games()
 
 
 
