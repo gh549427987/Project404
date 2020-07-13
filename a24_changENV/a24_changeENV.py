@@ -45,7 +45,7 @@ class regOperator():
         for game in _gamelist:
             print(game)
             print(self.pathGameReg+'\\'+game)
-            _delkey = winreg.OpenKey(winreg.HKEY_CURRENT_USER, self.pathGameReg+'\\'+game)
+            _delkey = winreg.OpenKey(winreg.HKEY_CURRENT_USER, self.pathGameReg)
             winreg.DeleteKey(_delkey, game)
             i+=1
         print("游戏注册表删除完成！")
@@ -220,8 +220,8 @@ def main():
                 pathPlatformReg=envReg["pathPlatformReg"],
                 pathPluginsReg=envReg["pathPluginsReg"])
     # ro.saveReg()
-    # ro.setReg()
-    ro.del_games()
+    ro.setReg()
+    # ro.del_games()
 
 
 
