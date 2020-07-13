@@ -2,10 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="24bebd69-f3a1-474c-a1ab-764b9e46c716" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/start.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/conf/settings.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/a24_changeENV.py" beforeDir="false" afterPath="$PROJECT_DIR$/a24_changeENV.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/settings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/start.py" beforeDir="false" afterPath="$PROJECT_DIR$/start.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,6 +57,11 @@
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/conf" />
+    </key>
   </component>
   <component name="RunManager" selected="Python.start">
     <configuration name="a24_changeENV" type="PythonConfigurationType" factoryName="Python" temporary="true">
@@ -178,7 +184,7 @@
       <workItem from="1594344273406" duration="2421000" />
       <workItem from="1594351304118" duration="2612000" />
       <workItem from="1594622056541" duration="8729000" />
-      <workItem from="1594649712684" duration="3249000" />
+      <workItem from="1594649712684" duration="10219000" />
     </task>
     <task id="LOCAL-00001" summary="reg update">
       <created>1594361410785</created>
@@ -194,7 +200,14 @@
       <option name="project" value="LOCAL" />
       <updated>1594645632006</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="reg update">
+      <created>1594653122079</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1594653122079</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -213,6 +226,10 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="392" y="54" key="#start/0.0.1440.900/-1920.0.1920.1080@0.0.1440.900" timestamp="1594650786077" />
+    <state x="281" y="29" key="CommitChangelistDialog2" timestamp="1594653121943">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="281" y="29" key="CommitChangelistDialog2/0.0.1440.900/-1920.0.1920.1080@0.0.1440.900" timestamp="1594653121943" />
     <state width="1396" height="246" key="GridCell.Tab.0.bottom" timestamp="1594650874752">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
@@ -229,10 +246,14 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state width="1396" height="246" key="GridCell.Tab.0.right/0.0.1440.900/-1920.0.1920.1080@0.0.1440.900" timestamp="1594650874752" />
-    <state x="385" y="196" width="670" height="676" key="search.everywhere.popup" timestamp="1594651438542">
+    <state x="503" y="370" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1594657012675">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="385" y="196" width="670" height="676" key="search.everywhere.popup/0.0.1440.900/-1920.0.1920.1080@0.0.1440.900" timestamp="1594651438542" />
+    <state x="503" y="370" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1440.900/-1920.0.1920.1080@0.0.1440.900" timestamp="1594657012675" />
+    <state x="385" y="196" width="670" height="676" key="search.everywhere.popup" timestamp="1594656718136">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="385" y="196" width="670" height="676" key="search.everywhere.popup/0.0.1440.900/-1920.0.1920.1080@0.0.1440.900" timestamp="1594656718136" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/a24_changENV$start.coverage" NAME="start Coverage Results" MODIFIED="1594650874741" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />

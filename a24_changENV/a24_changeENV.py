@@ -9,42 +9,56 @@ import logging
 import json
 import re
 from conf import conf
+import os
 
 #
-with open('settings.json', 'r') as f:
+with open('conf/settings.json', 'r') as f:
     envReg = json.load(f)
 
 
 class regOperator():
     '''
+        注册表Game目录下不要由sub——key
         操作保存当前注册表信息，生成新的注册表
         设置选定环境的注册表信息
     '''
 
-    def __init__(self,envtype,pathGameReg,pathPlatformReg,pathPluginsReg):
+    def __init__(self,envtype='',pathGameReg=envReg['EnvReg']["pathGameReg"],
+                 pathPlatformReg=envReg['EnvReg']["pathPlatformReg"],
+                 pathPluginsReg=envReg['EnvReg']["pathPluginsReg"]):
         self.pathGameReg = pathGameReg
         self.pathPlatformReg = pathPlatformReg
         self.pathPluginsReg = pathPluginsReg
         self.envType = envtype
+        self.oldtype = old_type
 
         self.pathGameKey = winreg.OpenKey(winreg.HKEY_CURRENT_USER, self.pathGameReg)
         self.pathPlatformKey = winreg.OpenKey(winreg.HKEY_CURRENT_USER, self.pathPlatformReg)
         self.pathPluginsKey = winreg.OpenKey(winreg.HKEY_CURRENT_USER, self.pathPluginsReg)
 
-    # 判断版本
+        # 不同版本的安装路径
+        self.platformInstallPath_Default = envReg['platform_Default']['InstallPath']
+        self.platformInstallPath_Online = envReg['platform_Online']['InstallPath']
+        self.platformInstallPath_Test = envReg['platform_Test']['InstallPath']
+        # 调用自己的类方法，确认当前版本
+        # self.oldtype = self.currentVersion
+
+
+    # 判断当前版本
     def currentVersion(self):
         _l = {}
-        _l_count=0
-        try:
-            while True:
-                name, value, type = winreg.EnumValue(self.pathPlatformKey, _l_count)
-                # create key：value str
-                _l[name] = value  # 创建当前游戏内，所有属性噶字典
-                _l_count += 1
-        except:
-            print('Platforms\'s reg has been added')
-        version = ''
-        return version
+        name, value, type = winreg.QueryValue(self.pathPlatformKey, 'InstallPath')
+        _l[name] = value
+        if _l['InstallPath'] == self.platformInstallPath_Default:
+            return 'Default'
+        elif _l['InstallPath'] == self.platformInstallPath_Online:
+            return 'Online'
+        elif _l['InstallPath'] == self.platformInstallPath_Test:
+            return 'Test'
+        else:
+            print('Can\'t not identify current Version！Please check setting.json')
+            return None
+
     # 删除Games目录下注册表
     def del_games(self):
         i = 0
@@ -68,10 +82,8 @@ class regOperator():
         print("游戏注册表删除完成！")
     # 注入注册表
     def setReg(self):
-        print('')
         with open('{}/{}_latest.json'.format(conf.REG_PATH, self.envType),'r') as f:
             _reg = json.load(f)
-
 
         def setGames():
             _setKey = winreg.OpenKey(winreg.HKEY_CURRENT_USER, self.pathGameReg)
@@ -94,10 +106,11 @@ class regOperator():
             setGames()
             setPlatform()
             setPlugins()
+            print('注册表注入成功')
         except:
-            print('注册表注入完成')
+            print('注册表注入失败')
     # 备份当前注册表
-    def saveReg(self):
+    def saveReg(self,oldtype):
         """
         {  _all
             "game_":{   _lp
@@ -188,38 +201,57 @@ class regOperator():
         _all['platform'] = readPlatform()
         _all['Plugins'] = readPlugins()
         # save all the str into a file with json
-        with open('{}/{}_latest.json'.format(conf.REG_PATH,self.envType), 'w') as f:
+        with open('{}/{}_latest.json'.format(conf.REG_PATH,oldtype), 'w') as f:
             json.dump(_all, f, ensure_ascii=False, indent=2)
 
-def toOnline():
-    ro = regOperator(envtype='Online',pathGameReg=envReg["pathGameReg"],
-                     pathPlatformReg=envReg["pathPlatformReg"],
-                     pathPluginsReg=envReg["pathPluginsReg"])
-    ver = ro.currentVersion()
-    if ver == 'Online':
-        print('Current version is Online!')
-    else:
-        print('To Online begin~')
-        # 备份当前注册表
-        ro.saveReg()
-        # 注入正式环境注册表
-        ro.setReg()
 
-    pass
+
+
+# 一键切换流程
+def run(envtype):
+    ro = regOperator(envtype=envtype)
+    ver = ro.currentVersion() # 先判断当前版本
+
+    if ver: # 如果当前版本能够识别
+        # 如果已经是新版本，打印信息
+        if ver == envtype:
+            print(f'Current version is {envtype}!')
+        # 如果是旧版本，执行备份——》更新注册表路径
+        else:
+            print(f'To {envtype} begin~')
+            print('备份当前注册表')
+            # 备份当前注册表
+            ro.saveReg(oldtype=ver)
+            # 初始化当前游戏注册表
+            ro.del_games()
+            # 注入正式环境注册表
+            ro.setReg()
+    # 打开launcher
+    exe_path = envReg[f'platform_{envtype}'] + '\\NetviosVR.exe'
+    os.open(exe_path)
+
+
+def toOnline():
+    run('Online')
 
 def toTest():
-    ro = regOperator(envtype='Test',pathGameReg=envReg["pathGameReg"],
-                     pathPlatformReg=envReg["pathPlatformReg"],
-                     pathPluginsReg=envReg["pathPluginsReg"])
+    run('Test')
+
+def toDefault():
+    run('Default')
+
+def currentVersion():
+    ver = regOperator().currentVersion()
+    if ver:
+        print(f"当前环境是{ver}")
+    return None
+
+def saveReg():
+    ro = regOperator()
     ver = ro.currentVersion()
-    if ver == 'Test':
-        print('Current version is Test!')
+    if ver:
+        ro.saveReg(ver)
     else:
-        print('To Test begin~')
-        # 备份当前注册表
-        ro.saveReg()
-        # 注入测试环境注册表
-        ro.setReg()
-    pass
+        print('注册表保存失败！')
 
 
