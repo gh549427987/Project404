@@ -10,8 +10,10 @@ import json
 import re
 from conf import conf
 
-logger = logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(filename)s[line:%(lineno)d] - %('
-                                                         'levelname)s: %(message)s')
+#
+with open('settings.json', 'r') as f:
+    envReg = json.load(f)
+
 
 class regOperator():
     '''
@@ -29,6 +31,21 @@ class regOperator():
         self.pathPlatformKey = winreg.OpenKey(winreg.HKEY_CURRENT_USER, self.pathPlatformReg)
         self.pathPluginsKey = winreg.OpenKey(winreg.HKEY_CURRENT_USER, self.pathPluginsReg)
 
+    # 判断版本
+    def currentVersion(self):
+        _l = {}
+        _l_count=0
+        try:
+            while True:
+                name, value, type = winreg.EnumValue(self.pathPlatformKey, _l_count)
+                # create key：value str
+                _l[name] = value  # 创建当前游戏内，所有属性噶字典
+                _l_count += 1
+        except:
+            print('Platforms\'s reg has been added')
+        version = ''
+        return version
+    # 删除Games目录下注册表
     def del_games(self):
         i = 0
         _gamelist = []
@@ -49,7 +66,7 @@ class regOperator():
             winreg.DeleteKey(_delkey, game)
             i+=1
         print("游戏注册表删除完成！")
-
+    # 注入注册表
     def setReg(self):
         print('')
         with open('{}/{}_latest.json'.format(conf.REG_PATH, self.envType),'r') as f:
@@ -79,6 +96,7 @@ class regOperator():
             setPlugins()
         except:
             print('注册表注入完成')
+    # 备份当前注册表
     def saveReg(self):
         """
         {  _all
@@ -98,6 +116,7 @@ class regOperator():
         # save the reg into json file
         # _lp save game by game reg data
         # 闭包函数
+        # 读取游戏注册表
         def readGames():
             # gain gamelist reg
             gameRegList = []
@@ -138,7 +157,7 @@ class regOperator():
 
             # create all games reg str
             return _lp
-
+        # 读取平台注册表
         def readPlatform():
             _l = {}
             _l_count=0
@@ -151,7 +170,7 @@ class regOperator():
             except:
                 print('Platforms\'s reg has been added')
             return _l
-
+        # 读取插件注册表
         def readPlugins():
             _l = {}
             _l_count = 0
@@ -172,59 +191,35 @@ class regOperator():
         with open('{}/{}_latest.json'.format(conf.REG_PATH,self.envType), 'w') as f:
             json.dump(_all, f, ensure_ascii=False, indent=2)
 
-
-
-# load settings
-def settidngs(Env):
-    ''':arg load settings data from settings.json'''
-
-    with open('settings.json','r') as f:
-        data = json.load(f)
-    if Env == 'Online':
-        envReg = data['onlineEnvReg']
-        return envReg, 'online'
-    elif Env == 'Test':
-        envReg = data['testEnvReg']
-        return envReg, 'test'
+def toOnline():
+    ro = regOperator(envtype='Online',pathGameReg=envReg["pathGameReg"],
+                     pathPlatformReg=envReg["pathPlatformReg"],
+                     pathPluginsReg=envReg["pathPluginsReg"])
+    ver = ro.currentVersion()
+    if ver == 'Online':
+        print('Current version is Online!')
     else:
-        print("环境选择错误")
-        return 0
+        print('To Online begin~')
+        # 备份当前注册表
+        ro.saveReg()
+        # 注入正式环境注册表
+        ro.setReg()
 
-# choose environment
-def chooseEnv():
+    pass
 
-    # 选择切换到正式环境或者测试环境
-    while True:
-        # envChoose = input('Welcome man,this script is work for change register.\n'
-        #                   '1: Change to Online Env.\n'
-        #                   '2: Change to Test Env.\n'
-        #                   'others: input whatever you want.\n'
-        #                   'choose a selection you want>> '
-        #                   '').strip()
-        envChoose='2'
-        if envChoose == '1':
-            return(settidngs('Online'))
-        elif envChoose == '2':
-            return(settidngs('Test'))
-        elif envChoose == 'quit':
-            break
-        else:
-            print('InputError:please select again:')
-            continue
+def toTest():
+    ro = regOperator(envtype='Test',pathGameReg=envReg["pathGameReg"],
+                     pathPlatformReg=envReg["pathPlatformReg"],
+                     pathPluginsReg=envReg["pathPluginsReg"])
+    ver = ro.currentVersion()
+    if ver == 'Test':
+        print('Current version is Test!')
+    else:
+        print('To Test begin~')
+        # 备份当前注册表
+        ro.saveReg()
+        # 注入测试环境注册表
+        ro.setReg()
+    pass
 
-# main
-def main():
-    # 选择切换
-    envReg,envtype = chooseEnv()
-    ro = regOperator(envtype,pathGameReg=envReg["pathGameReg"],
-                pathPlatformReg=envReg["pathPlatformReg"],
-                pathPluginsReg=envReg["pathPluginsReg"])
-    # ro.saveReg()
-    ro.setReg()
-    # ro.del_games()
-
-
-
-if __name__ == '__main__':
-    main()
 
