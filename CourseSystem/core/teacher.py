@@ -7,20 +7,27 @@
 '''
 教师视图
 '''
+from lib import common
 
-
+teacher_info={
+    'user':None
+}
 def login():
     pass
 
+@common.auth('teacher')
 def check_course():
     pass
 
+@common.auth('teacher')
 def choose_course():
     pass
 
+@common.auth('teacher')
 def check_student():
     pass
 
+@common.auth('teacher')
 def update_score():
     pass
 

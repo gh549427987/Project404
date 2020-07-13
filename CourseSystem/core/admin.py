@@ -7,6 +7,12 @@
 '''
 管理员视图
 '''
+from interface import admin_interface
+from lib import common
+
+admin_info = {
+    'user': None,
+}
 
 def register():
     while True:
@@ -18,14 +24,23 @@ def register():
         # 检验是否有输入,若都有进入下一步
         if username and psw and repsw:
             # 密码校验
-            if psw != repsw:
-                print('注册失败，两次密码输入不一致！')
-                continue
-
-            # 用户名校验，待完善
-            if not username:
-                pass
-    pass
+            if psw == repsw:
+                flag, msg = admin_interface.admin_register_interface(
+                    username, psw
+                )
+                if flag:
+                    print(msg)
+                    # 可变类型不需要global
+                    admin_info['user']= username
+                    break
+                else:
+                    print(msg)
+            else:
+                print('两次密码输入不一致,清重新尝试')
+                break
+        else:
+            print("input again")
+            break
 
 def login():
     while True:
@@ -34,16 +49,53 @@ def login():
         psw = input('请输入密码：').strip()
 
         # 校验用户名和密码
-        pass
+        flag, msg = admin_interface.admin_login_interface(username, psw)
 
-    pass
+        if flag is True:
+            admin_info['user'] = username
+            print(msg)
+            # 记录用户当前登陆状态
 
+            break
+        else:
+            print(msg)
+
+@common.auth('admin')
 def create_school():
-    pass
+    while True:
+        # 输入用户名密码实现登陆
+        school_name = input('请输入学校名称：').strip()
+        school_addr = input('请输入学校地址：').strip()
 
+        # 校验用户名和密码
+        flag, msg = admin_interface.create_school_interface(school_name, school_addr, admin_info.get('user'))
+
+        if flag is True:
+            print(msg)
+            # 记录用户当前登陆状态
+            break
+        else:
+            print(msg)
+
+@common.auth('admin')
 def create_course():
+    while True:
+        # 输入用户名密码实现登陆
+        course_name = input('请输入课程名称：').strip()
+
+        # 校验用户名和密码
+        flag, msg = admin_interface.create_course_interface(course_name, admin_info.get('user'))
+
+        if flag is True:
+            print(msg)
+            # 记录用户当前登陆状态
+            break
+        else:
+            print(msg)
+
     pass
 
+@common.auth('admin')
 def create_teacher():
     pass
 

@@ -6,6 +6,11 @@
 '''
 学生视图
 '''
+from lib import common
+
+student_info={
+    'user':None
+}
 
 def register():
     while True:
@@ -29,12 +34,15 @@ def register():
 def login():
     pass
 
+@common.auth('school')
 def choose_school():
     pass
 
+@common.auth('school')
 def choose_course():
     pass
 
+@common.auth('school')
 def check_score():
     pass
 
