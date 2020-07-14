@@ -4,7 +4,13 @@
 # @FileName: test..py
 # @Software: PyCharm
 
-import winreg
+from conf import conf
+import time
+import os
+oldtype = 'Online'
+_regJson = '{}/{}_env/{}_latest.json'.format(conf.REG_PATH,oldtype,oldtype)
+curr_time = time.strftime("%Y-%m-%d_%H:%M:%S")
+_regBackup = '{}/{}_env/{}_{}.json'.format(oldtype, oldtype, oldtype, curr_time)
 
-_delkey = winreg.OpenKey(winreg.HKEY_CURRENT_USER, r'Software\NetVios\NetViosVR\Games')
-winreg.DeleteKey(_delkey, 'VR000001')
+os.popen('copy {} {}'.format(_regJson.replace('\\','\\\\'),_regBackup.replace('\\','\\\\')))
+print('copy {} {}'.format(_regJson.replace('\\','\\\\'),_regBackup.replace('\\','\\\\')))

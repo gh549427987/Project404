@@ -5,11 +5,28 @@
 # @Software: PyCharm
 
 import winreg
-import logging
 import json
 import re
 from conf import conf
 import os
+import logging.handlers
+import time
+
+
+LOG_FILE = r'tst.log'
+
+handler = logging.handlers.RotatingFileHandler(LOG_FILE, maxBytes=1024 * 1024, backupCount=5, encoding='utf-8')  # 实例化handler
+fmt = '%(asctime)s - %(levelname)s - %(message)s'
+
+formatter = logging.Formatter(fmt)  # 实例化formatter
+handler.setFormatter(formatter)  # 为handler添加formatter
+
+logger = logging.getLogger('tst')  # 获取名为tst的logger
+logger.addHandler(handler)  # 为logger添加handler
+logger.setLevel(logging.DEBUG)
+
+logger.info(u'输出中文试一试')
+logger.debug('first debug message')
 
 #
 with open('conf/settings.json', 'r') as f:
@@ -30,11 +47,11 @@ class regOperator():
         self.pathPlatformReg = pathPlatformReg
         self.pathPluginsReg = pathPluginsReg
         self.envType = envtype
-        self.oldtype = old_type
 
         self.pathGameKey = winreg.OpenKey(winreg.HKEY_CURRENT_USER, self.pathGameReg)
-        self.pathPlatformKey = winreg.OpenKey(winreg.HKEY_CURRENT_USER, self.pathPlatformReg)
-        self.pathPluginsKey = winreg.OpenKey(winreg.HKEY_CURRENT_USER, self.pathPluginsReg)
+        self.pathPlatformKey = winreg.OpenKey(winreg.HKEY_CURRENT_USER, self.pathPlatformReg, access=winreg.KEY_ALL_ACCESS)
+        print(self.pathPluginsReg)
+        self.pathPluginsKey = winreg.OpenKey(winreg.HKEY_CURRENT_USER, self.pathPluginsReg, access=winreg.KEY_ALL_ACCESS)
 
         # 不同版本的安装路径
         self.platformInstallPath_Default = envReg['platform_Default']['InstallPath']
@@ -47,8 +64,9 @@ class regOperator():
     # 判断当前版本
     def currentVersion(self):
         _l = {}
-        name, value, type = winreg.QueryValue(self.pathPlatformKey, 'InstallPath')
-        _l[name] = value
+        value, type= winreg.QueryValueEx(self.pathPlatformKey, 'InstallPath')
+        _l['InstallPath'] = value
+        print(_l)
         if _l['InstallPath'] == self.platformInstallPath_Default:
             return 'Default'
         elif _l['InstallPath'] == self.platformInstallPath_Online:
@@ -87,7 +105,6 @@ class regOperator():
 
         def setGames():
             _setKey = winreg.OpenKey(winreg.HKEY_CURRENT_USER, self.pathGameReg)
-
             for game in _reg['Games'].keys():
                 # 创建每个游戏的注册表
                 winreg.CreateKey(_setKey, game[-8:])
@@ -96,19 +113,39 @@ class regOperator():
                     _setvalueKey = winreg.OpenKey(winreg.HKEY_CURRENT_USER, game, access=winreg.KEY_SET_VALUE)
                     winreg.SetValueEx(_setvalueKey,property,0,1,_reg['Games'][game][property])
         def setPlatform():
-            for property in _reg['platform'].keys():
-                winreg.SetValueEx(self.pathPlatformKey,property,0,1,_reg[property])
-        def setPlugins():
-            for property in _reg['Plugins'].keys():
-                winreg.SetValueEx(self.pathPluginsKey, property, 0, 1, _reg[property])
 
-        try:
-            setGames()
-            setPlatform()
-            setPlugins()
-            print('注册表注入成功')
-        except:
-            print('注册表注入失败')
+            for property in _reg['platform'].keys():
+                winreg.SetValueEx(self.pathPlatformKey,property,0,1,_reg['platform'][property])
+        def setPlugins():
+            _l = {}
+            i = 0
+            # 检查一下plugin目录有多少个插件
+            while True:
+                try:
+                    name, value = winreg.EnumKey(self.pathPluginsKey,i)
+                    _l[name] = value
+                    i+=1
+                except:
+                    break
+            print(_l)
+            if not _l:# 如果插件下有插件，逐个插入
+                for key in _l.keys():
+                    _pluginKey = winreg.OpenKey(winreg.HKEY_CURRENT_USER, self.pathPluginsReg+'\\'+ key,
+                                                access=winreg.KEY_WRITE)
+                    for property in _reg['Plugins'].keys():
+                        winreg.SetValueEx(_pluginKey, property, 0 , 1, _reg[self.pathPluginsReg])
+                print('插件注入完成')
+            else:
+                print('插件注入完成')
+                pass
+
+        # try:
+        setGames()
+        setPlatform()
+        setPlugins()
+        #     print('注册表注入成功')
+        # except:
+        #     print('注册表注入失败')
     # 备份当前注册表
     def saveReg(self,oldtype):
         """
@@ -166,7 +203,7 @@ class regOperator():
                     # create game's name with key:value str
                     # "game":{key:value}
                     _lp[path] = _l  # 赋值到当前游戏id到字典内
-                    print('{}\'s reg has been added'.format(path[-8:]))
+                    print('saveReg:{}\'s reg has been added'.format(path[-8:]))
 
             # create all games reg str
             return _lp
@@ -181,7 +218,7 @@ class regOperator():
                     _l[name] = value  # 创建当前游戏内，所有属性噶字典
                     _l_count += 1
             except:
-                print('Platforms\'s reg has been added')
+                print('saveReg:Platforms\'s reg has been added')
             return _l
         # 读取插件注册表
         def readPlugins():
@@ -194,15 +231,20 @@ class regOperator():
                     _l[name] = value  # 创建当前游戏内，所有属性噶字典
                     _l_count += 1
             except:
-                print('Plugins\'s reg has been added')
+                print('saveReg:Plugins\'s reg has been added')
             return _l
 
         _all['Games'] = readGames()
         _all['platform'] = readPlatform()
         _all['Plugins'] = readPlugins()
         # save all the str into a file with json
-        with open('{}/{}_latest.json'.format(conf.REG_PATH,oldtype), 'w') as f:
+        _regJson = '{}\{}_env\{}_latest.json'.format(conf.REG_PATH,oldtype,oldtype)
+        curr_time = time.strftime("%Y-%m-%d_%H_%M_%S")
+        _regBackup = '{}\{}_env\{}_{}.json'.format(conf.REG_PATH, oldtype, oldtype, curr_time)
+        with open(_regJson, 'w') as f:
             json.dump(_all, f, ensure_ascii=False, indent=2)
+        os.system('copy {} {}'.format(_regJson, _regBackup))
+        print('copy {} {}'.format(_regJson, _regBackup))
 
 
 
@@ -211,24 +253,31 @@ class regOperator():
 def run(envtype):
     ro = regOperator(envtype=envtype)
     ver = ro.currentVersion() # 先判断当前版本
-
+    exe_path = str(envReg[f'platform_{envtype}']['InstallPath']) + '\\NetviosVR.exe' # 创建launcher启动路径
     if ver: # 如果当前版本能够识别
         # 如果已经是新版本，打印信息
         if ver == envtype:
             print(f'Current version is {envtype}!')
+            os.system(exe_path)
         # 如果是旧版本，执行备份——》更新注册表路径
         else:
             print(f'To {envtype} begin~')
             print('备份当前注册表')
             # 备份当前注册表
+            print("================== Execute saveREG ==================")
             ro.saveReg(oldtype=ver)
+            print("================== Finish saveREG ==================")
             # 初始化当前游戏注册表
+            print("================== Execute DEL_gameREG ==================")
             ro.del_games()
+            print("================== Finish DEL_gameREG ==================")
             # 注入正式环境注册表
+            print("================== Execute setREG ==================")
             ro.setReg()
-    # 打开launcher
-    exe_path = envReg[f'platform_{envtype}'] + '\\NetviosVR.exe'
-    os.open(exe_path)
+            print("================== Finish setREG ==================")
+            os.system(exe_path)
+
+
 
 
 def toOnline():
@@ -248,10 +297,15 @@ def currentVersion():
 
 def saveReg():
     ro = regOperator()
+    print("================== Execute saveREG ==================")
     ver = ro.currentVersion()
     if ver:
         ro.saveReg(ver)
     else:
         print('注册表保存失败！')
+    print("================== Finish saveREG ==================")
 
-
+if __name__ == '__main__':
+    ro = regOperator('Online')
+    ver = ro.currentVersion()
+    ro.saveReg(ver)

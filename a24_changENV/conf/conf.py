@@ -7,4 +7,6 @@
 import os
 BASE_PATH = os.path.dirname(os.path.dirname(__file__)) # /a24_changENV
 
+LOG_PATH = os.path.join(BASE_PATH, 'log')
+
 REG_PATH = os.path.join(BASE_PATH, 'reg')
