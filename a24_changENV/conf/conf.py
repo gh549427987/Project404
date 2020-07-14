@@ -5,6 +5,11 @@
 # @Software: PyCharm
 
 import os
+from json import load
+
+with open('conf/settings.json', 'r') as f:
+    envReg = load(f)
+
 BASE_PATH = os.path.dirname(os.path.dirname(__file__)) # /a24_changENV
 
 LOG_PATH = os.path.join(BASE_PATH, 'log')
