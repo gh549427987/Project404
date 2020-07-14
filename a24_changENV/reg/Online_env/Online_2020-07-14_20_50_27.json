@@ -1,0 +1,12 @@
+{
+  "Games": {},
+  "platform": {
+    "path.install": "E:\\NetviosVR\\NetviosVR_Online\\NetViosVR\\Games",
+    "path.cache": "E:\\NetviosVR\\NetviosVR_Online\\NetViosVR\\AppCache",
+    "InstallPath": "E:\\NetviosVR\\NetviosVR_Online\\NetViosVR",
+    "Version": "1.2.0"
+  },
+  "Plugins": {
+    "": ""
+  }
+}

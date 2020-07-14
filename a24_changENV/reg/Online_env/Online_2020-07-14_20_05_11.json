@@ -1,0 +1,92 @@
+{
+  "Games": {
+    "Software\\NetVios\\NetViosVR\\Games\\VR000001": {
+      "GAME_ID": "VR000001",
+      "": "",
+      "NAME": "Creed：荣耀擂台",
+      "VERSION": "1.0.0",
+      "STARTUP_PATH": "\\Creed\\11112019_CR_Netvios_186719_sdk\\186719\\WindowsNoEditor\\Creed.exe",
+      "GAME_LEVEL": "R",
+      "SIZE": "2809058630",
+      "CHECKSUM": "cbc07e7c06a2443c7fad4bf4e2ae4fa6",
+      "FORCE_UPDATE": "false",
+      "DOWNLOAD_URL": "https://a24.gdl.netease.com/1918111043_11112019_CR_Netvios_186719_sdk.zip",
+      "INSTALL": "E:\\NetviosVR\\NetviosVR_Online\\NetViosVR\\Games",
+      "CACHE": "E:\\NetviosVR\\NetviosVR_Online\\NetViosVR\\AppCache",
+      "CONFIG_PATH": "",
+      "OPS": "1"
+    },
+    "Software\\NetVios\\NetViosVR\\Games\\VR000004": {
+      "GAME_ID": "VR000004",
+      "NAME": "节奏空间",
+      "VERSION": "1.3.1",
+      "STARTUP_PATH": "\\Beat Saber\\Beat Saber\\Beat Saber.exe",
+      "GAME_LEVEL": "R",
+      "SIZE": "487694804",
+      "CHECKSUM": "7e146f7eeea395b5501750a67dcc2247",
+      "FORCE_UPDATE": "false",
+      "DOWNLOAD_URL": "https://a24.gdl.netease.com/Beat Saber.zip",
+      "INSTALL": "E:\\NetviosVR\\NetviosVR_Online\\NetViosVR\\Games",
+      "CACHE": "E:\\NetviosVR\\NetviosVR_Online\\NetViosVR\\AppCache",
+      "CONFIG_PATH": "",
+      "OPS": "1"
+    },
+    "Software\\NetVios\\NetViosVR\\Games\\VR000007": {
+      "GAME_ID": "VR000007",
+      "": "",
+      "NAME": "甜点盛宴",
+      "VERSION": "0.2",
+      "STARTUP_PATH": "\\DessertSlice\\WindowsNoEditor\\DessertSlice.exe",
+      "GAME_LEVEL": "R",
+      "SIZE": "493735506",
+      "CHECKSUM": "7e9edc8a8ecf47ffa23e77af4451b2cc",
+      "FORCE_UPDATE": "false",
+      "DOWNLOAD_URL": "https://a24.gdl.netease.com/2006181730_Netvios_DessertSlice.zip",
+      "INSTALL": "E:\\NetviosVR\\NetviosVR_Online\\NetViosVR\\Games",
+      "CACHE": "E:\\NetviosVR\\NetviosVR_Online\\NetViosVR\\AppCache",
+      "CONFIG_PATH": "",
+      "OPS": "1"
+    },
+    "Software\\NetVios\\NetViosVR\\Games\\VR000008": {
+      "GAME_ID": "VR000008",
+      "": "",
+      "NAME": "竞速达人",
+      "VERSION": "1.3",
+      "STARTUP_PATH": "\\Sprint Vector\\06262020_SprintVector_207870\\Win64\\WindowsNoEditor\\SprintVector.exe",
+      "GAME_LEVEL": "R",
+      "SIZE": "6178925732",
+      "CHECKSUM": "3d9259486710d06550463f2e1714c9e5",
+      "FORCE_UPDATE": "false",
+      "DOWNLOAD_URL": "https://a24.gdl.netease.com/06262020_SprintVector_207870.zip",
+      "INSTALL": "E:\\NetviosVR\\NetviosVR_Online\\NetViosVR\\Games",
+      "CACHE": "E:\\NetviosVR\\NetviosVR_Online\\NetViosVR\\AppCache",
+      "CONFIG_PATH": "",
+      "OPS": "1"
+    },
+    "Software\\NetVios\\NetViosVR\\Games\\VR000013": {
+      "GAME_ID": "VR000013",
+      "": "",
+      "NAME": "义庄派对（多人版）",
+      "VERSION": "0.3",
+      "STARTUP_PATH": "\\yizhuangpaiduiduoren\\VR_Zombie_JJ_Netvios_2020.5.19B\\WindowsNoEditor\\VR_Zombie_JJ.exe",
+      "GAME_LEVEL": "R",
+      "SIZE": "832170379",
+      "CHECKSUM": "45478b95e9d209e915fc5a794d3e8b3c",
+      "FORCE_UPDATE": "false",
+      "DOWNLOAD_URL": "https://a24.gdl.netease.com/VR_Zombie_JJ_Netvios_2020.5.19B.zip",
+      "INSTALL": "E:\\NetviosVR\\NetviosVR_Online\\NetViosVR\\Games",
+      "CACHE": "E:\\NetviosVR\\NetviosVR_Online\\NetViosVR\\AppCache",
+      "CONFIG_PATH": "",
+      "OPS": "1"
+    }
+  },
+  "platform": {
+    "InstallPath": "E:\\NetviosVR\\NetviosVR_Online\\NetViosVR",
+    "Version": "1.2.0",
+    "path.install": "E:\\NetviosVR\\NetviosVR_Online\\NetViosVR\\Games",
+    "path.cache": "E:\\NetviosVR\\NetviosVR_Online\\NetViosVR\\AppCache"
+  },
+  "Plugins": {
+    "": ""
+  }
+}
