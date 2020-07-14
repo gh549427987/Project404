@@ -16,12 +16,13 @@ logging.basicConfig(format='%(asctime)s - %(filename)s[line:%(lineno)d] - %(leve
 def run(envtype):
     ro = regOperator(envtype=envtype)
     ver = ro.currentVersion() # 先判断当前版本
-    exe_path = str(conf.envReg[f'platform_{envtype}']['InstallPath']) + '\\NetviosVR.exe' # 创建launcher启动路径
+    exe_path = os.path.join(str(conf.envReg[f'platform_{envtype}']['InstallPath']),'NetViosVR.exe')# 创建launcher启动路径
     if ver: # 如果当前版本能够识别
         # 如果已经是新版本，打印信息
         if ver == envtype:
             logging.info(f'Current version is {envtype}!')
-            os.system(exe_path)
+            print(exe_path)
+            os.system('\"'+exe_path+'\"')
         # 如果是旧版本，执行备份——》更新注册表路径
         else:
             logging.info(f'To {envtype} begin~')
@@ -38,6 +39,7 @@ def run(envtype):
             logging.info("================== Execute setREG ==================")
             ro.setReg()
             logging.info("================== Finish setREG ==================")
+            print(exe_path)
             os.system(exe_path)
 
 def toOnline():
