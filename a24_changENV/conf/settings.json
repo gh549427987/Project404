@@ -11,15 +11,15 @@
     "path.cache": "%AppData%\\Roaming\\NetViosVR\\AppCache"
   },
   "platform_Online": {
-    "InstallPath": "E:\\NetviosVR\\NetviosVR_Online\\NetViosVR",
+    "InstallPath": "E:\\QA\\NetviosVR\\NetviosVR_Online\\NetViosVR",
     "Version": "1.0.0",
-    "path.install": "E:\\NetviosVR\\NetviosVR_Online\\NetViosVR\\Games",
-    "path.cache": "E:\\NetviosVR\\NetviosVR_Online\\NetViosVR\\AppCache"
+    "path.install": "E:\\QA\\NetviosVR\\NetviosVR_Online\\Games",
+    "path.cache": "E:\\QA\\NetviosVR\\NetviosVR_Online\\AppCache"
   },
   "platform_Test": {
-    "InstallPath": "E:\\NetviosVR\\NetviosVR_Test\\NetViosVR",
+    "InstallPath": "E:\\QA\\NetviosVR\\NetviosVR_Test\\NetViosVR",
     "Version": "1.0.0",
-    "path.install": "E:\\NetviosVR\\NetviosVR_Test\\NetViosVR\\Games",
-    "path.cache": "E:\\NetviosVR\\NetviosVR_Test\\NetViosVR\\AppCache"
+    "path.install": "E:\\QA\\NetviosVR\\NetviosVR_Test\\Games",
+    "path.cache": "E:\\QA\\NetviosVR\\NetviosVR_Test\\AppCache"
   }
 }

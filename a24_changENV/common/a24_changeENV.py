@@ -41,6 +41,8 @@ def run(envtype):
             logging.info("================== Finish setREG ==================")
             print(exe_path)
             os.system(exe_path)
+    else:
+        pass
 
 def toOnline():
     run('Online')
@@ -67,6 +69,20 @@ def saveReg():
     if ver:
         ro.saveReg(ver)
     else:
-        logging.info('注册表保存失败！')
+        logging.error('注册表保存失败！')
     logging.info("================== Finish saveREG ==================")
+
+def setReg():
+    ro = regOperator()
+    logging.info("================== Execute setREG ==================")
+    ver = ro.currentVersion()
+    ro_2 = regOperator(envtype=ver)
+    logging.info(f'当前版本是{ver}')
+    if ver:
+        ro_2.setReg()
+    else:
+        logging.error('注册表保存失败！')
+    logging.info("================== Finish setREG ==================")
+
+    pass
 

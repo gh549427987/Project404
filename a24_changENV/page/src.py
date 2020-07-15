@@ -13,7 +13,8 @@ version = {
     '2':a24.toTest,
     '3':a24.toDefault,
     '4':a24.currentVersion,
-    '5':a24.saveReg
+    '5':a24.saveReg,
+    '6':a24.setReg
 }
 
 def run():
@@ -25,12 +26,13 @@ def run():
                           '3: Start Default Env.\n'
                           '4: 查询当前是什么环境.\n' 
                           '5: 保存当前环境的注册表.\n'
+                          '6: 注入当前版本的注册表.\n'
                           'q: quit.\n'
                           'choose a selection you want>> ').strip()
         if envChoose in ['1','2','3']:
             version[envChoose]()
-            break
-        elif envChoose in ['4','5']:
+            continue
+        elif envChoose in ['4','5','6']:
             version[envChoose]()
             continue
         elif envChoose == 'q':
