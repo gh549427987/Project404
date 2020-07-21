@@ -6,6 +6,7 @@
 
 from common import a24_changeENV as a24
 from conf import conf
+from page import init
 import logging
 
 version = {
@@ -14,7 +15,8 @@ version = {
     '3':a24.toDefault,
     '4':a24.currentVersion,
     '5':a24.saveReg,
-    '6':a24.setReg
+    '6':a24.setReg,
+    '7':init.init,
 }
 
 def run():
@@ -27,12 +29,10 @@ def run():
                           '4: 查询当前是什么环境.\n' 
                           '5: 保存当前环境的注册表.\n'
                           '6: 注入当前版本的注册表.\n'
+                          '7: 初始化环境.\n'
                           'q: quit.\n'
                           'choose a selection you want>> ').strip()
-        if envChoose in ['1','2','3']:
-            version[envChoose]()
-            continue
-        elif envChoose in ['4','5','6']:
+        if envChoose in version.keys():
             version[envChoose]()
             continue
         elif envChoose == 'q':
